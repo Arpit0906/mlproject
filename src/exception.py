@@ -1,5 +1,6 @@
 import sys
 
+
 try:
     from src.logger import logging
 except ModuleNotFoundError:
