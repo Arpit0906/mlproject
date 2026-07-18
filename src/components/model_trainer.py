@@ -99,13 +99,15 @@ class ModelTrainer:
                 raise CustomException("No best model found",sys)
             logging.info("Best model found")
 
+            best_model.fit(X_train, y_train)
+            predicted=best_model.predict(X_test)
+            r2_square = r2_score(y_test, predicted)
+
             save_object(
                 file_path=self.model_trainer_config.trained_model_file_path,
                 obj=best_model
             )
-            best_model.fit(X_train, y_train)
-            predicted=best_model.predict(X_test)
-            r2_square = r2_score(y_test, predicted)
+
             return r2_square
         except Exception as e:
             raise CustomException(e,sys)
